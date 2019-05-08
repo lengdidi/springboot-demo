@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>user展示页面</title>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<th>id</th>
+			<th>userCode</th>
+			<th>userName</th>
+			<th>gender</th>
+			<th>birthday</th>
+			<th>phone</th>
+			<th>address</th>
+			<th>userRole</th>
+			<th>createdBy</th>
+			<th>creationDate</th>
+			<th>modifyBy</th>
+			<th>modifyDate</th>
+		</tr>
+		<tr th:each="item : ${userlist}">
+			<td th:text="${item.id}"></td>
+			<td th:text="${item.userCode}"></td>
+			<td th:text="${item.userName}"></td>
+			<td th:if="${item.gender} == '1'">男</td>
+			<td th:if="${item.gender} == '2'">女</td>
+			<td th:text="${#dates.format(item.birthday)}"></td>
+			<td th:text="${item.phone}"></td>
+			<td th:text="${item.address}"></td>
+			<td th:if="${item.userRole} == '1'">超级管理员</td>
+			<td th:if="${item.userRole} == '2'">经理</td>
+			<td th:if="${item.userRole} == '3'">普通员工</td>
+			<td th:text="${item.createdBy}"></td>
+			<td th:text="${#dates.format(item.creationDate)}"></td>
+			<td th:text="${item.modifyBy}"></td>
+			<td th:text="${#dates.format(item.modifyDate)}"></td>
+		</tr>
+	</table>
+	<a th:href="allbill">bill</a>
+</body>
+</html>

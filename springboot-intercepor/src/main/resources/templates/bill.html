@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>bill展示页面</title>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<th>id</th>
+			<th>billCode</th>
+			<th>productName</th>
+			<th>productDesc</th>
+			<th>productUnit</th>
+			<th>productCount</th>
+			<th>totalPrice</th>
+			<th>isPayment</th>
+			<th>createdBy</th>
+			<th>creationDate</th>
+			<th>modifyBy</th>
+			<th>modifyDate</th>
+			<th>providerId</th>
+		</tr>
+		<tr th:each="item : ${billlist}">
+			<td th:text="${item.id}"></td>
+			<td th:text="${item.billCode}"></td>
+			<td th:text="${item.productName}"></td>
+			<td th:text="${item.productDesc}"></td>
+			<td th:text="${item.productUnit}"></td>
+			<td th:text="${item.productCount}"></td>
+			<td th:text="${item.totalPrice}"></td>
+			<td th:if="${item.isPayment} == '1'">未支付</td>
+			<td th:if="${item.isPayment} == '2'">已支付</td>
+			<td th:text="${item.providerId}"></td>
+			<td th:text="${item.createdBy}"></td>
+			<td th:text="${#dates.format(item.creationDate)}"></td>
+			<td th:text="${item.modifyBy}"></td>
+			<td th:text="${#dates.format(item.modifyDate)}"></td>
+		</tr>
+	</table>
+	<a th:href="tball">user</a>
+</body>
+</html>
