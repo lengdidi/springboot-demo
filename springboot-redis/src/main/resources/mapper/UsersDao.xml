@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.ld.mapper.UsersDao">
+
+    <select id="findAllUser" resultType="users">
+		select * from smbms_user
+	</select>
+
+    <select id="findById" resultType="users">
+		select * from smbms_user where id =#{id}
+	</select>
+
+    <update id="updateUser" parameterType="users">
+		update smbms_user set userName=#{userName} where id = #{id}
+	</update>
+
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+		delete from smbms_user where id = #{id}
+	</delete>
+
+
+</mapper>
