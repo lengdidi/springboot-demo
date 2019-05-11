@@ -5,6 +5,8 @@ import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -86,4 +88,14 @@ public class RabbitMQConfig {
 	Binding bindingExchangeMessages(TopicExchange exchange) {
 		return BindingBuilder.bind(queue()).to(exchange()).with("ld.#");// *表示一个词,#表示零个或多个词
 	}
+
+	/**
+	 * springboot自带的转json的一个类接口
+	 * @return MessageConverter
+	 */
+	@Bean
+	public MessageConverter messageConverter() {
+		return new Jackson2JsonMessageConverter();
+	}
+
 }
